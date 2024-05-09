@@ -1,5 +1,5 @@
 <?php
-require_once 'Card.php';
+require_once 'protectedFolder/Card.php';
 // 设置报错级别
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
@@ -10,7 +10,7 @@ class Controller {
 
     // 构造函数，用于初始化数据库连接
     public function __construct() {
-        $this->db = new SQLite3('cards.cdb');
+        $this->db = new SQLite3('protectedFolder/cards.cdb');
     }
     // 析构函数
     public function __destruct() {
