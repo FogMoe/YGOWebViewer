@@ -1,5 +1,5 @@
 <?php
-include 'Controller.php'; // 确保包含了修改后的Controller类
+include 'protectedFolder/Controller.php'; // 确保包含了修改后的Controller类
 
 $controller = new Controller();
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
