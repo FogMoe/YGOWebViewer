@@ -1,2 +1,1 @@
-# YGOCardWeb
-在网页读取并显示YGOPro的CDB文件。
+# 这个项目正在开发中。
