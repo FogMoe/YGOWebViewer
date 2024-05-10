@@ -174,7 +174,7 @@ class View{
                 }
             }
         
-            $card['type']=implode(", ", $result);
+            $card['type']=implode(" ", $result);
 
 
             //种族
@@ -250,10 +250,6 @@ class View{
             return $this->controller->getTotalCardCount();  // 返回计数结果
         }
 }
-$v=new View();
 
-foreach ($v->getCardViewById(41999284) as $card) {
-    echo "{$card['name']}: {$card['type']}\n";
-}
 ?>
 

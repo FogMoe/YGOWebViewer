@@ -127,29 +127,26 @@ if ($cardId) {
     <table>
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Desc</th>
-                <th>OT</th>
-                <th>Alias</th>
-                <th>Setcode</th>
-                <th>Type</th>
+                <th>卡图</th>
+                <th>身份证</th>
+                <th>名字</th>
+                <th>描述</th>
+                <th>字段</th>
+                <th>类型</th>
                 <th>ATK</th>
                 <th>DEF</th>
-                <th>Level</th>
-                <th>Race</th>
-                <th>Attribute</th>
-                <th>Category</th>
+                <th>等级/连接值</th>
+                <th>种族</th>
+                <th>属性</th>
             </tr>
         </thead>
         <tbody>
                         <?php foreach ($cards as $card): ?>
             <tr>
+                <td><img src="https://raw.githubusercontent.com/FogMoe/FogMoe-ygopro-server-custom-cards/master/pics/<?= htmlspecialchars($card['id']) ?>.jpg" alt="Smiley face" width="42" height="42"/></td>
                 <td><?= htmlspecialchars($card['id']) ?></td>
                 <td><?= htmlspecialchars($card['name']) ?></td>
                 <td><?= htmlspecialchars($card['desc']) ?></td>
-                <td><?= htmlspecialchars($card['ot']) ?></td>
-                <td><?= htmlspecialchars($card['alias']) ?></td>
                 <td><?= htmlspecialchars($card['setcode']) ?></td>
                 <td><?= htmlspecialchars($card['type']) ?></td>
                 <td><?= htmlspecialchars($card['atk']) ?></td>
@@ -157,7 +154,6 @@ if ($cardId) {
                 <td><?= htmlspecialchars($card['level']) ?></td>
                 <td><?= htmlspecialchars($card['race']) ?></td>
                 <td><?= htmlspecialchars($card['attribute']) ?></td>
-                <td><?= htmlspecialchars($card['category']) ?></td>
             </tr>
             <?php endforeach; ?>
         </tbody>
