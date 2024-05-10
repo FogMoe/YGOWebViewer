@@ -4,9 +4,9 @@ include 'protectedFolder/View.php';
 $view = new View();
 $page = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
 $pageSize = 10; // 每页显示10条记录
-$cardId = isset($_GET['cardId']) ? $_GET['cardId'] : null;
+$search = isset($_GET['search']) ? $_GET['search'] : null;
 
-$cards = $view->getCardsPageViewByIdOrName($cardId, $cardId, $page, $pageSize);
+$cards = $view->getCardsPageViewByIdOrName($search, $search, $page, $pageSize);
 $totalCards = $view->getTotalCardCount();
 $totalPages = ceil($totalCards / $pageSize);
 
@@ -32,8 +32,8 @@ $previousPageUrl = buildPageUrl($page - 1);
     <h1>FOGMOE YGO Card List</h1>
     <h2><a href="https://ygo.fog.moe/">点此返回FOGMOEYGO首页</a></h2>
     <form method="GET">
-        <label for="cardId">卡片 ID/名称:</label>
-        <input type="text" id="cardId" name="cardId" value="<?= htmlspecialchars($cardId) ?>">
+        <label for="search">卡片 ID/名称:</label>
+        <input type="text" id="search" name="search" value="<?= htmlspecialchars($search) ?>">
         <button type="submit">查询</button>
     </form>
     <table>
@@ -74,14 +74,14 @@ $previousPageUrl = buildPageUrl($page - 1);
         <?php if ($page > 1): ?>
             <a href="?<?= htmlspecialchars($previousPageUrl) ?>">Previous</a>
         <?php endif; ?>
-        <?php if ($page < $totalPages): ?>
+        <?php if ($page < $totalPages && count($cards)>=10 ): ?>
             <a href="?<?= htmlspecialchars($nextPageUrl) ?>">Next</a>
         <?php endif; ?>
     </div>
     <p>总共<?= $totalCards ?> 条数据，当前第 <?= $page ?> 页</p>
     <footer>
         <a href="https://beian.miit.gov.cn/" target="_blank">鲁ICP备2022009156号-1</a>
-        <br>
+        <br><br>
         <a href="https://fog.moe/" target="_blank">&copy; 2024 FOGMOE</a>
     </footer>
 </body>
