@@ -14,7 +14,7 @@ class View{
         $cards = $this->controller->getCardById($id);
 
         
-        foreach ($cards as $card): 
+        foreach ($cards as &$card): 
             //如果怪兽星大于99意味着要变成十六进制后取最后2位
             if($card['level']>99):
                 $card['level']=dechex($card['level'])%100;
@@ -122,7 +122,7 @@ class View{
 
 
         endforeach;
-
+        unset($card);
 
         return $cards;  // 返回所有查询到的卡片数据
     }
@@ -132,7 +132,7 @@ class View{
         $cards = $this->controller->getCardsByPage($page, $pageSize);
 
         
-        foreach ($cards as $card): 
+        foreach ($cards as &$card): 
             //如果怪兽星大于99意味着要变成十六进制后取最后2位
             if($card['level']>99):
                 $card['level']=dechex($card['level'])%100;
@@ -213,7 +213,7 @@ class View{
                     $result[] = $name;
                 }
             }
-        
+            
             $card['race']=implode(", ", $result);
 
 
@@ -240,7 +240,7 @@ class View{
 
 
         endforeach;
-
+        unset($card);
 
         return $cards;  // 返回所有查询到的卡片数据
     }
@@ -251,6 +251,9 @@ class View{
         }
 }
 $v=new View();
-$v->getCardViewById(41999284);
+
+foreach ($v->getCardViewById(41999284) as $card) {
+    echo "{$card['name']}: {$card['type']}\n";
+}
 ?>
 
