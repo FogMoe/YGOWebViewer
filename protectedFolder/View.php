@@ -140,8 +140,8 @@ class View{
 }
 $v=new View();
 
-foreach ($v->getCardsPageViewByIdOrName($id = '龙', $name = '龙', $page = 1, $pageSize = 10) as $c) {
+/*foreach ($v->getCardsPageViewByIdOrName($id = '龙', $name = '龙', $page = 1, $pageSize = 10) as $c) {
     echo $c['name'];
-}
+}*/
 ?>
 
