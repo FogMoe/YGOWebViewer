@@ -1,17 +1,19 @@
 <?php
 include 'protectedFolder/Controller.php'; // 确保包含了修改后的Controller类
+include 'protectedFolder/View.php'; // 确保包含了修改后的Controller类
 
 $controller = new Controller();
+$view = new View();
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $pageSize = 10; // 每页显示10条记录
 $cardId = isset($_GET['cardId']) ? (int)$_GET['cardId'] : null;
 
 if ($cardId) {
-    $cards = $controller->getCardById($cardId);
+    $cards = $view->getCardViewById($cardId);
     $totalCards = count($cards);
     $totalPages = 1; // 只有一页，因为是单个卡片的结果
 } else {
-    $cards = $controller->getCardsByPage($page, $pageSize);
+    $cards = $view->getCardsViewByPage($page, $pageSize);
     $totalCards = $controller->getTotalCardCount();
     $totalPages = ceil($totalCards / $pageSize);
 }

@@ -1,5 +1,5 @@
 <?php
-require_once 'protectedFolder/Card.php';
+require_once 'Card.php';
 // 设置报错级别
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
@@ -10,13 +10,15 @@ class Controller {
 
     // 构造函数，用于初始化数据库连接
     public function __construct() {
-        $this->db = new SQLite3('protectedFolder/cards.cdb');
+        $this->db = new SQLite3('cards.cdb');
     }
     // 析构函数
     public function __destruct() {
         // 关闭数据库连接
         $this->db->close();
     }
+
+    //根据id获取卡牌
     public function getCardById($id) {
         // 准备一个参数化的 SQL 查询
         $stmt = $this->db->prepare('SELECT texts.id, name, desc, ot, alias, setcode, type, atk, def, level, race, attribute, category FROM texts JOIN datas ON texts.id = datas.id WHERE texts.id = :id');
@@ -35,6 +37,7 @@ class Controller {
         return $cards;  // 返回所有查询到的卡片数据
     }
 
+    //获取某页卡
     public function getCardsByPage($page, $pageSize) {
         $offset = ($page - 1) * $pageSize;
         $sql = "SELECT texts.id, name, desc, ot, alias, setcode, type, atk, def, level, race, attribute, category FROM texts JOIN datas ON texts.id = datas.id LIMIT :limit OFFSET :offset";
