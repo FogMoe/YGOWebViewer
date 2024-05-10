@@ -4,12 +4,17 @@ include 'protectedFolder/View.php';
 $view = new View();
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $pageSize = 10; // 每页显示10条记录
-$cardId = isset($_GET['cardId']) ? (int)$_GET['cardId'] : null;
+$cardId = isset($_GET['cardId']) ? $_GET['cardId'] : null;
 
 $cards = $view->getCardsPageViewByIdOrName($cardId, $cardId, $page, $pageSize);
 $totalCards = $view->getTotalCardCount();
 $totalPages = ceil($totalCards / $pageSize);
-
+$nextPageGet = $_GET;
+$nextPageGet['page'] = $page + 1;  // 设置为当前页码加一
+$nextPageUrl = http_build_query($nextPageGet);
+$previousPageGet = $_GET;
+$previousPageGet['page'] = $page - 1;  // 设置为当前页码-一
+$previousPageUrl = http_build_query($previousPageGet);
 /*
 if ($cardId) {
     $cards = $view->getCardViewById($cardId);
@@ -127,7 +132,7 @@ if ($cardId) {
         <h1>查询卡片信息</h1>
     <form method="GET">
         <label for="cardId">卡片 身份证/名:</label>
-        <input type="text" id="cardId" name="cardId" required>
+        <input type="text" id="cardId" name="cardId">
         <button type="submit">查询</button>
     </form>
     <table>
@@ -165,20 +170,16 @@ if ($cardId) {
         </tbody>
     </table>
 
-    <?php if (!$cardId): ?>
-        <div class="pagination">
-            <?php if ($page > 1): ?>
-            <a href="?page=<?= $page - 1 ?>">Previous</a>
-            <?php endif; ?>
-            <?php if ($page < $totalPages): ?>
-            <a href="?page=<?= $page + 1 ?>">Next</a>
-            <?php endif; ?>
-        </div>
-        <p>总共<?= $totalCards ?> 条数据，当前第 <?= $page ?> 页</p>
-    <?php else: ?>
-        <br><center><a href="?">显示全部卡片</a></center>
-    <?php endif; ?>
-    
+
+    <div class="pagination">
+        <?php if ($page > 1): ?>
+            <a href="?<?=htmlspecialchars($previousPageUrl)?>">Previous</a>
+        <?php endif; ?>
+        <?php if ($page < $totalPages&&count($cards)>=10): ?>
+            <a href="?<?=htmlspecialchars($nextPageUrl)?>">Next</a>
+        <?php endif; ?>
+    </div>
+    <p>总共<?= $totalCards ?> 条数据，当前第 <?= $page ?> 页</p>
     <br><br>
 
     <footer>
