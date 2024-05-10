@@ -37,6 +37,28 @@ class Controller {
         return $cards;  // 返回所有查询到的卡片数据
     }
 
+    //根据Name获取卡牌
+    public function getCardByName($name) {
+        // 准备一个参数化的 SQL 查询
+        $stmt = $this->db->prepare('SELECT texts.id, name, desc, ot, alias, setcode, type, atk, def, level, race, attribute, category FROM texts JOIN datas ON texts.id = datas.id WHERE texts.name LIKE :name');
+        
+        // 绑定参数时使用 LIKE 语法，'%' 是通配符，匹配任意字符序列
+        $stmt->bindValue(':name', '%' . $name . '%', SQLITE3_TEXT);
+        
+        $result = $stmt->execute();
+        
+        if ($result === false) {
+            throw new Exception("Failed to execute SQL statement: " . $this->db->lastErrorMsg());
+        }
+        
+        $cards = [];
+        while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+            $cards[] = $row;
+        }
+        return $cards;  // 返回所有查询到的卡片数据
+    }
+
+
     //获取某页卡
     public function getCardsByPage($page, $pageSize) {
         $offset = ($page - 1) * $pageSize;
@@ -63,7 +85,67 @@ class Controller {
         }
         return $cards;  // 返回所有查询到的卡片数据
     }
-    
+
+
+    //根据id或名字查找卡片并分页
+    public function getCardsPageByIdOrName($id = null, $name = null, $page = 1, $pageSize = 10) {
+        // 初始化查询基础部分
+        $sql = "SELECT texts.id, name, desc, ot, alias, setcode, type, atk, def, level, race, attribute, category FROM texts JOIN datas ON texts.id = datas.id";
+
+        // 用于存储查询条件的数组
+        $conditions = [];
+        $params = [];
+
+        // 根据 id 添加条件
+        if ($id !== null) {
+            if (is_numeric($id)){            
+                $conditions[] = "texts.id = :id";
+                $params[':id'] = $id;
+            }
+        }
+
+        // 根据 name 添加条件
+        if ($name !== null) {
+            $conditions[] = "texts.name LIKE :name";
+            $params[':name'] = '%' . $name . '%';
+        }
+
+        // 如果存在搜索条件，将它们添加到 SQL 语句中
+        if (!empty($conditions)) {
+            $sql .= " WHERE " . implode(" OR ", $conditions);
+        }
+
+        // 添加分页条件
+        $offset = ($page - 1) * $pageSize;
+        $sql .= " LIMIT :limit OFFSET :offset";
+        $params[':limit'] = $pageSize;
+        $params[':offset'] = $offset;
+
+        // 准备 SQL 语句
+        $stmt = $this->db->prepare($sql);
+        if ($stmt === false) {
+            throw new Exception("Failed to prepare SQL statement: " . $this->db->lastErrorMsg());
+        }
+
+        // 绑定所有参数
+        foreach ($params as $key => &$value) {
+            $stmt->bindValue($key, $value, is_int($value) ? SQLITE3_INTEGER : SQLITE3_TEXT);
+        }
+
+        // 执行查询
+        $result = $stmt->execute();
+        if ($result === false) {
+            throw new Exception("Failed to execute SQL statement: " . $this->db->lastErrorMsg());
+        }
+
+        // 收集结果
+        $cards = [];
+        while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+            $cards[] = $row;
+        }
+
+        return $cards;  // 返回所有查询到的卡片数据
+    }
 
     // 获取卡片总数的方法
     public function getTotalCardCount() {

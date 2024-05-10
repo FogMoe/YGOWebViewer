@@ -6,6 +6,11 @@ $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $pageSize = 10; // 每页显示10条记录
 $cardId = isset($_GET['cardId']) ? (int)$_GET['cardId'] : null;
 
+$cards = $view->getCardsPageViewByIdOrName($cardId, $cardId, $page, $pageSize);
+$totalCards = $view->getTotalCardCount();
+$totalPages = ceil($totalCards / $pageSize);
+
+/*
 if ($cardId) {
     $cards = $view->getCardViewById($cardId);
     $totalCards = count($cards);
@@ -15,6 +20,7 @@ if ($cardId) {
     $totalCards = $view->getTotalCardCount();
     $totalPages = ceil($totalCards / $pageSize);
 }
+*/
 ?>
 
 <!DOCTYPE html>
@@ -120,7 +126,7 @@ if ($cardId) {
     <h2><a href="https://ygo.fog.moe/">点此返回FOGMOEYGO首页</a></h2>
         <h1>查询卡片信息</h1>
     <form method="GET">
-        <label for="cardId">卡片 ID:</label>
+        <label for="cardId">卡片 身份证/名:</label>
         <input type="text" id="cardId" name="cardId" required>
         <button type="submit">查询</button>
     </form>
