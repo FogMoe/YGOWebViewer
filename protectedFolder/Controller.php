@@ -103,13 +103,13 @@ class Controller {
                 $params[':id'] = $id;
             }
         }
-
+        echo $id ;
         // 根据 name 添加条件
         if ($name !== null) {
             $conditions[] = "texts.name LIKE :name";
             $params[':name'] = '%' . $name . '%';
         }
-
+echo $name ;
         // 如果存在搜索条件，将它们添加到 SQL 语句中
         if (!empty($conditions)) {
             $sql .= " WHERE " . implode(" OR ", $conditions);
