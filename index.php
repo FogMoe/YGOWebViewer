@@ -143,7 +143,7 @@ if ($cardId) {
         <tbody>
                         <?php foreach ($cards as $card): ?>
             <tr>
-                <td><img src="https://raw.githubusercontent.com/FogMoe/FogMoe-ygopro-server-custom-cards/master/pics/<?= htmlspecialchars($card['id']) ?>.jpg" alt="Smiley face" width="42" height="42"/></td>
+                <td><img src="https://file1.fogmoe.top/YGODiy/pics/<?= htmlspecialchars($card['id']) ?>.jpg" alt="Smiley face" width="42" height="42"/></td>
                 <td><?= htmlspecialchars($card['id']) ?></td>
                 <td><?= htmlspecialchars($card['name']) ?></td>
                 <td><?= htmlspecialchars($card['desc']) ?></td>
@@ -179,6 +179,7 @@ if ($cardId) {
         <a href="https://beian.miit.gov.cn/" target="_blank">鲁ICP备2022009156号-1</a>
         <br><br>
         <a href="https://fog.moe/" target="_blank">&copy; 2024 FOGMOE</a>
+        <a href="https://fog.moe/" target="_blank">&copy; 兔子猫世界第一可爱！！！！！</a>
     </footer>
 </body>
 </html>
