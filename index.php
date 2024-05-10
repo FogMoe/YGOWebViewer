@@ -30,7 +30,6 @@ $previousPageUrl = buildPageUrl($page - 1);
 </head>
 <body>
     <h1>FOGMOE YGO Card List</h1>
-    <h2><a href="https://ygo.fog.moe/">点此返回FOGMOEYGO首页</a></h2>
     <form method="GET">
         <label for="search">卡片 ID/名称:</label>
         <input type="text" id="search" name="search" value="<?= htmlspecialchars($search) ?>">
@@ -72,13 +71,14 @@ $previousPageUrl = buildPageUrl($page - 1);
     </table>
     <div class="pagination">
         <?php if ($page > 1): ?>
-            <a href="?<?= htmlspecialchars($previousPageUrl) ?>">Previous</a>
+            <a href="?<?= htmlspecialchars($previousPageUrl) ?>">上一页</a>
         <?php endif; ?>
         <?php if ($page < $totalPages && count($cards)>=10 ): ?>
-            <a href="?<?= htmlspecialchars($nextPageUrl) ?>">Next</a>
+            <a href="?<?= htmlspecialchars($nextPageUrl) ?>">下一页</a>
         <?php endif; ?>
     </div>
     <p>总共<?= $totalCards ?> 条数据，当前第 <?= $page ?> 页</p>
+    <h4><a href="https://ygo.fog.moe/">点此返回FOGMOEYGO首页</a></h4>
     <footer>
         <a href="https://beian.miit.gov.cn/" target="_blank">鲁ICP备2022009156号-1</a>
         <br><br>
