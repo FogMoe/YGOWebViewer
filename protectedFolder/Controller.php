@@ -10,7 +10,7 @@ class Controller {
 
     // 构造函数，用于初始化数据库连接
     public function __construct() {
-        $this->db = new SQLite3('protectedFolder/cards.cdb');
+        $this->db = new SQLite3('cards.cdb');
     }
     // 析构函数
     public function __destruct() {
@@ -132,6 +132,7 @@ class Controller {
             $stmt->bindValue($key, $value, is_int($value) ? SQLITE3_INTEGER : SQLITE3_TEXT);
         }
 
+        echo $sql;
         // 执行查询
         $result = $stmt->execute();
         if ($result === false) {

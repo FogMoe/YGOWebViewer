@@ -15,7 +15,7 @@ class View{
 
             //如果怪兽星大于99意味着要变成十六进制后取最后2位
             if($card['level']>99):
-                $card['level']=dechex($card['level'])%100;
+                $card['level']=(int)dechex($card['level'])%100;
             endif;
 
             //类型
@@ -134,7 +134,14 @@ class View{
 
     // 获取卡片总数的方法
     public function getTotalCardCount() {return $this->controller->getTotalCardCount();}
-}
 
+
+
+}
+$v=new View();
+
+foreach ($v->getCardsPageViewByIdOrName($id = '龙', $name = '龙', $page = 1, $pageSize = 10) as $c) {
+    echo $c['name'];
+}
 ?>
 
