@@ -244,6 +244,11 @@ class View{
 
         return $cards;  // 返回所有查询到的卡片数据
     }
+
+        // 获取卡片总数的方法
+        public function getTotalCardCount() {
+            return $this->controller->getTotalCardCount();  // 返回计数结果
+        }
 }
 $v=new View();
 $v->getCardViewById(41999284);
