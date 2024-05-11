@@ -54,7 +54,7 @@ $previousPageUrl = buildPageUrl($page - 1);
         <tbody>
             <?php foreach ($cards as $card): ?>
             <tr>
-                <td><img src="https://file1.fogmoe.top/YGODiy/pics/<?= htmlspecialchars($card['id']) ?>.jpg" alt="<?= htmlspecialchars($card['name']) ?>" width="100" height="145"/></td>
+                <td><img src="https://mirror.ghproxy.com/https://raw.githubusercontent.com/FogMoe/YGOCustomCards/main/pics/<?= htmlspecialchars($card['id']) ?>.jpg" alt="<?= htmlspecialchars($card['name']) ?>" width="100" height="145"/></td>
                 <td><?= htmlspecialchars($card['id']) ?></td>
                 <td><?= htmlspecialchars($card['name']) ?></td>
                 <td><?= htmlspecialchars($card['desc']) ?></td>
