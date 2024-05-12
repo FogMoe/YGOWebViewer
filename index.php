@@ -35,7 +35,43 @@ $previousPageUrl = buildPageUrl($page - 1);
         <input type="text" id="search" name="search" value="<?= htmlspecialchars($search) ?>">
         <button type="submit">查询</button>
     </form>
-    <table>
+
+
+
+    <div class="cardList">
+        <?php foreach ($cards as $card): ?>
+            <div class="card">
+                <div class="cardLin1">
+                    <span class="cardName"><?= htmlspecialchars($card['name']) ?></span>
+                    <span class="cardAttribute"><?= htmlspecialchars($card['attribute']) ?></span>
+                </div>
+                <div class="cardLin2">
+                    <span class="cardId">ID:<?= htmlspecialchars($card['id']) ?></span>
+                    <span class="cardZiduan">字段:<?= htmlspecialchars($card['setcode']) ?></span>
+                    <span class="cardTypeAndLevel">
+                        <span class="cardType"><?= htmlspecialchars($card['type']) ?></span>
+                        <span class="cardLevel"><?= htmlspecialchars($card['level']) ?>☆</span>
+                    </span>
+                </div>
+                <div class="cardLin3">
+                    <img class="cardPic" src="https://mirror.ghproxy.com/https://raw.githubusercontent.com/FogMoe/YGOCustomCards/main/pics/<?= htmlspecialchars($card['id']) ?>.jpg" alt="<?= htmlspecialchars($card['name']) ?>">
+                </div>
+                <div class="cardLin4">
+                    <textarea readonly class="cardMiaoshu">【<?= htmlspecialchars($card['race']) ?>】\n <?= htmlspecialchars($card['desc']) ?></textarea>
+                </div>
+                <div class="cardLin5">
+                    <span class="cardAtk">ATK:<?= htmlspecialchars($card['atk']) ?></span>&nbsp;/&nbsp;<span class="cardDef">DEF:<?= htmlspecialchars($card['def']) ?></span>
+                </div>
+            <?php foreach ($cards as $card): ?>
+        </div>
+
+
+
+
+    </div>
+    
+
+ <!--   <table>
         <thead>
             <tr>
                 <th>卡图</th>
@@ -69,6 +105,7 @@ $previousPageUrl = buildPageUrl($page - 1);
             <?php endforeach; ?>
         </tbody>
     </table>
+            -->
     <div class="pagination">
         <?php if ($page > 1): ?>
             <a href="?<?= htmlspecialchars($previousPageUrl) ?>">上一页</a>
