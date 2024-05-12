@@ -26,16 +26,35 @@ $previousPageUrl = buildPageUrl($page - 1);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FOGMOE YGO Card List</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="./styles.css">
+    <style>
+        .cardList{text-align:center;border:2px}
+        .card{padding: 8px;border-radius: 0px 0px 0px 0px;border:8px outset rgb(126, 126, 126);text-align:center;display: inline-block;margin: 5px; width: 280px; height: 530px; background-color: rgb(240, 240, 240); }
+        .cardPic{text-align:center;width: 190px;object-fit: contain;}
+        .cardLin1{text-align:left;border: 3px ridge rgb(163, 163, 163);padding: 5px;margin: -2px;border-radius: 0px 0px 0px 0px;}
+        .cardName{font-weight:600;}
+        .cardAttribute{float:right;}
+        .cardLin2{text-align:left;font-size: 13px;}
+        .cardTypeAndLevel{float:right;}
+        .cardMiaoshu{resize:none; font-size:15px; height: 170px; width: 275px;}
+        .cardLin4{height: 180px;text-align:left;border-bottom: 1px solid black;}
+        .cardLin5{text-align:left;}
+        .cardLin3{padding-top: 2px;padding-bottom: 2px;}
+        .cardAtkAndDef{float:right;}
+        .search{
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <h1>FOGMOE YGO Card List</h1>
+    <div class="search">
     <form method="GET">
         <label for="search">卡片 ID/名称:</label>
         <input type="text" id="search" name="search" value="<?= htmlspecialchars($search) ?>">
         <button type="submit">查询</button>
     </form>
-
+    </div>
 
 
     <div class="cardList">
@@ -46,66 +65,29 @@ $previousPageUrl = buildPageUrl($page - 1);
                     <span class="cardAttribute"><?= htmlspecialchars($card['attribute']) ?></span>
                 </div>
                 <div class="cardLin2">
-                    <span class="cardId">ID:<?= htmlspecialchars($card['id']) ?></span>
-                    <span class="cardZiduan">字段:<?= htmlspecialchars($card['setcode']) ?></span>
+                    <span class="cardRace"><?= htmlspecialchars($card['race']) ?></span>
+                    字段:<span class="cardZiduan"><?= htmlspecialchars($card['setcode']) ?></span>
+                    
                     <span class="cardTypeAndLevel">
                         <span class="cardType"><?= htmlspecialchars($card['type']) ?></span>
-                        <span class="cardLevel"><?= htmlspecialchars($card['level']) ?>☆</span>
+                        <?php if($card['level']>0): ?><span class="cardLevel"><?= htmlspecialchars($card['level']) ?>☆</span><?php endif;?>
                     </span>
                 </div>
                 <div class="cardLin3">
                     <img class="cardPic" src="https://mirror.ghproxy.com/https://raw.githubusercontent.com/FogMoe/YGOCustomCards/main/pics/<?= htmlspecialchars($card['id']) ?>.jpg" alt="<?= htmlspecialchars($card['name']) ?>">
                 </div>
                 <div class="cardLin4">
-                    <textarea readonly class="cardMiaoshu">【<?= htmlspecialchars($card['race']) ?>】\n <?= htmlspecialchars($card['desc']) ?></textarea>
+                    <textarea readonly class="cardMiaoshu"><?= htmlspecialchars($card['desc']) ?></textarea>
                 </div>
                 <div class="cardLin5">
-                    <span class="cardAtk">ATK:<?= htmlspecialchars($card['atk']) ?></span>&nbsp;/&nbsp;<span class="cardDef">DEF:<?= htmlspecialchars($card['def']) ?></span>
+                    <span class="cardId">ID:<?= htmlspecialchars($card['id']) ?></span>
+                    <span class="cardAtkAndDef">ATK:<?= htmlspecialchars($card['atk']) ?>&nbsp;/&nbsp;DEF:<?= htmlspecialchars($card['def']) ?></span>
                 </div>
-            <?php foreach ($cards as $card): ?>
-        </div>
-
-
-
-
+            </div>
+        <?php endforeach;?>
     </div>
     
 
- <!--   <table>
-        <thead>
-            <tr>
-                <th>卡图</th>
-                <th>ID</th>
-                <th>名称</th>
-                <th>描述</th>
-                <th>字段</th>
-                <th>类型</th>
-                <th>ATK</th>
-                <th>DEF</th>
-                <th>等级</th>
-                <th>种族</th>
-                <th>属性</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($cards as $card): ?>
-            <tr>
-                <td><img src="https://mirror.ghproxy.com/https://raw.githubusercontent.com/FogMoe/YGOCustomCards/main/pics/<?= htmlspecialchars($card['id']) ?>.jpg" alt="<?= htmlspecialchars($card['name']) ?>" width="100" height="145"/></td>
-                <td><?= htmlspecialchars($card['id']) ?></td>
-                <td><?= htmlspecialchars($card['name']) ?></td>
-                <td><?= htmlspecialchars($card['desc']) ?></td>
-                <td><?= htmlspecialchars($card['setcode']) ?></td>
-                <td><?= htmlspecialchars($card['type']) ?></td>
-                <td><?= htmlspecialchars($card['atk']) ?></td>
-                <td><?= htmlspecialchars($card['def']) ?></td>
-                <td><?= htmlspecialchars($card['level']) ?></td>
-                <td><?= htmlspecialchars($card['race']) ?></td>
-                <td><?= htmlspecialchars($card['attribute']) ?></td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-            -->
     <div class="pagination">
         <?php if ($page > 1): ?>
             <a href="?<?= htmlspecialchars($previousPageUrl) ?>">上一页</a>
