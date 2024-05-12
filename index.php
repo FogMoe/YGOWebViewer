@@ -29,9 +29,9 @@ $previousPageUrl = buildPageUrl($page - 1);
     <link rel="stylesheet" type="text/css" href="./styles.css">
     <style>
         .cardList{text-align:center;border:2px}
-        .card{padding: 8px;border-radius: 0px 0px 0px 0px;border:8px outset rgb(126, 126, 126);text-align:center;display: inline-block;margin: 5px; width: 280px; height: 530px; background-color: rgb(240, 240, 240); }
+        .card{padding: 8px;border-radius: 3px 3px 3px 3px;border:8px outset rgb(126, 126, 126);text-align:center;display: inline-block;margin: 5px; width: 280px; height: 530px; background-color: rgb(240, 240, 240); }
         .cardPic{text-align:center;width: 190px;object-fit: contain;}
-        .cardLin1{text-align:left;border: 3px ridge rgb(163, 163, 163);padding: 5px;margin: -2px;border-radius: 0px 0px 0px 0px;}
+        .cardLin1{text-align:left;border: 3px ridge rgb(163, 163, 163);padding: 5px;margin: -2px;border-radius: 3px 3px 3px 3px;}
         .cardName{font-weight:600;}
         .cardAttribute{float:right;}
         .cardLin2{text-align:left;font-size: 13px;}
@@ -96,8 +96,8 @@ $previousPageUrl = buildPageUrl($page - 1);
             <a href="?<?= htmlspecialchars($nextPageUrl) ?>">下一页</a>
         <?php endif; ?>
     </div>
-    <p>总共<?= $totalCards ?> 条数据，当前第 <?= $page ?> 页</p>
-    <h4><a href="https://ygo.fog.moe/">点此返回FOGMOEYGO首页</a></h4>
+    <p align="center">总共<?= $totalCards ?> 条数据，当前第 <?= $page ?> 页</p>
+    <h4  align="center"><a href="https://ygo.fog.moe/">点此返回FOGMOEYGO首页</a></h4>
     <footer>
         <a href="https://beian.miit.gov.cn/" target="_blank">鲁ICP备2022009156号-1</a>
         <br><br>
