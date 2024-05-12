@@ -29,20 +29,25 @@ $previousPageUrl = buildPageUrl($page - 1);
     <link rel="stylesheet" type="text/css" href="./styles.css">
     <style>
         .cardList{text-align:center;border:2px}
-        .card{padding: 8px;border-radius: 0px 0px 0px 0px;border:8px outset rgb(126, 126, 126);text-align:center;display: inline-block;margin: 5px; width: 280px; height: 530px; background-color: rgb(240, 240, 240); }
-        .cardPic{text-align:center;width: 190px;object-fit: contain;}
-        .cardLin1{text-align:left;border: 3px ridge rgb(163, 163, 163);padding: 5px;margin: -2px;border-radius: 0px 0px 0px 0px;}
+        .card{padding: 8px;border-radius: 10px 10px 10px 10px;border:8px outset rgb(126, 126, 126);text-align:center;display: inline-block;margin: 5px; width: 280px; height: 530px; background-color: rgb(240, 240, 240); }
+        .cardPic{text-align:center;height: 275px;object-fit: contain;}
+        .cardLin1{text-align:left;border: 3px ridge rgb(163, 163, 163);padding: 5px;margin: -2px;border-radius: 4px 4px 0px 0px;}
         .cardName{font-weight:600;}
         .cardAttribute{float:right;}
         .cardLin2{text-align:left;font-size: 13px;}
         .cardTypeAndLevel{float:right;}
-        .cardMiaoshu{resize:none; font-size:15px; height: 170px; width: 275px;}
+        .cardMiaoshu{resize:none; font-size:15px; height: 170px; width: 100%;margin:0px -2.5px;}
         .cardLin4{height: 180px;text-align:left;border-bottom: 1px solid black;}
         .cardLin5{text-align:left;}
         .cardLin3{padding-top: 2px;padding-bottom: 2px;}
         .cardAtkAndDef{float:right;}
         .search{
             text-align: center;
+        }
+        textarea {
+            
+            -webkit-appearance: none;
+            border-radius: 0;
         }
     </style>
 </head>
