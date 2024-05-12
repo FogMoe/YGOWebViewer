@@ -36,8 +36,8 @@ $previousPageUrl = buildPageUrl($page - 1);
         .cardAttribute{float:right;}
         .cardLin2{text-align:left;font-size: 13px;}
         .cardTypeAndLevel{float:right;}
-        .cardMiaoshu{resize:none; font-size:15px; height: 170px; width: 100%;margin:0px -2.5px;}
-        .cardLin4{height: 180px;text-align:left;border-bottom: 1px solid black;}
+        .cardMiaoshu{resize:none; font-size:15px; height: 170px; width: 100%;margin:0px -1px;padding:0px;}
+        .cardLin4{height: 180px;text-align:left;border-bottom: 1px solid black;margin:0px;padding:0px;}
         .cardLin5{text-align:left;}
         .cardLin3{padding-top: 2px;padding-bottom: 2px;}
         .cardAtkAndDef{float:right;}
