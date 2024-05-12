@@ -47,13 +47,13 @@ $previousPageUrl = buildPageUrl($page - 1);
     </style>
 </head>
 <body>
-    <h1>FOGMOE YGO Card List</h1>
+    <h1  align="center">FOGMOE YGO Card List</h1>
     <div class="search">
-    <form method="GET">
-        <label for="search">卡片 ID/名称:</label>
-        <input type="text" id="search" name="search" value="<?= htmlspecialchars($search) ?>">
-        <button type="submit">查询</button>
-    </form>
+        <form method="GET">
+            <label for="search">卡片 ID/名称:</label>
+            <input type="text" id="search" name="search" value="<?= htmlspecialchars($search) ?>">
+            <button type="submit">查询</button>
+        </form>
     </div>
 
 
