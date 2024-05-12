@@ -29,9 +29,9 @@ $previousPageUrl = buildPageUrl($page - 1);
     <link rel="stylesheet" type="text/css" href="./styles.css">
     <style>
         .cardList{text-align:center;border:2px}
-        .card{padding: 8px;border-radius: 3px 3px 3px 3px;border:8px outset rgb(126, 126, 126);text-align:center;display: inline-block;margin: 5px; width: 280px; height: 530px; background-color: rgb(240, 240, 240); }
+        .card{padding: 8px;border-radius: 0px 0px 0px 0px;border:8px outset rgb(126, 126, 126);text-align:center;display: inline-block;margin: 5px; width: 280px; height: 530px; background-color: rgb(240, 240, 240); }
         .cardPic{text-align:center;width: 190px;object-fit: contain;}
-        .cardLin1{text-align:left;border: 3px ridge rgb(163, 163, 163);padding: 5px;margin: -2px;border-radius: 3px 3px 3px 3px;}
+        .cardLin1{text-align:left;border: 3px ridge rgb(163, 163, 163);padding: 5px;margin: -2px;border-radius: 0px 0px 0px 0px;}
         .cardName{font-weight:600;}
         .cardAttribute{float:right;}
         .cardLin2{text-align:left;font-size: 13px;}
